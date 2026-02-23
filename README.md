@@ -11,6 +11,11 @@ Sports Event Management Application - Interview Dev Challenge
   - Standard approach for most apps
 - Since Venues can be used my multiple leagues, venues are shared across all users rather than user-specific.
 - For security, only the user who created the event can edit or delete it.
+- Type Safety & Error handling:
+  - All database operations are typed
+  - All actions return `Result<T, AppError>`
+  - Database types vs. domain types
+  - Types grouped by concern (database, API, errors)
 
 ## Prerequisites
 
