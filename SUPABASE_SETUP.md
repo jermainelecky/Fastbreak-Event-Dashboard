@@ -33,7 +33,13 @@ Replace `your_project_url_here` and `your_anon_key_here` with the values from st
 
 ## 4. Database Schema
 
-The database tables will be created in the next step (Phase 1, Step 3). For now, Supabase is ready to use.
+1. In your Supabase project dashboard, go to **SQL Editor**
+2. Click **New Query**
+3. Copy and paste the contents of `supabase/migrations/001_initial_schema.sql`
+4. Click **Run** to execute the migration
+5. (Optional) To add sample venues, run `supabase/migrations/002_seed_data.sql`
+
+For detailed schema documentation, see [DATABASE_SCHEMA.md](./DATABASE_SCHEMA.md).
 
 ## Notes
 

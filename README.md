@@ -2,6 +2,16 @@
 
 Sports Event Management Application - Interview Dev Challenge
 
+## Decisions
+- Decided to go with email/password authentication instead of google 0Auth sign in:
+  - Simplet setup: no Google Cloud console or 0Auth app
+  - Faster to implement: no external service configuration
+  - Better for demos: fewer moving parts
+  - Still demonstrates authentication implementation
+  - Standard approach for most apps
+- Since Venues can be used my multiple leagues, venues are shared across all users rather than user-specific.
+- For security, only the user who created the event can edit or delete it.
+
 ## Prerequisites
 
 - Node.js 18+ installed
