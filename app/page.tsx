@@ -1,14 +1,17 @@
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <h1 className="text-4xl font-bold text-center mb-4">
-          Fastbreak Event Dashboard
-        </h1>
-        <p className="text-center text-gray-600">
-          Sports Event Management Application
-        </p>
-      </div>
-    </main>
-  );
+import { getCurrentUser } from "@/lib/utils/auth";
+import { redirect } from "next/navigation";
+
+/**
+ * Root page - redirects based on authentication status
+ * - If authenticated: redirect to /dashboard
+ * - If not authenticated: redirect to /login
+ */
+export default async function Home() {
+  const user = await getCurrentUser();
+  
+  if (user) {
+    redirect("/dashboard");
+  } else {
+    redirect("/login");
+  }
 }
