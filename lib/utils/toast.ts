@@ -30,17 +30,20 @@ export function showErrorToast(title: string, description?: string) {
 /**
  * Handle a server action result and show appropriate toast
  * Use this in client components after calling server actions
+ *
+ * Note: Some actions (like delete) don't return data on success.
+ * In those cases we still want to call onSuccess and show a toast.
  */
 export function handleServerActionResult<T>(
   result: { success: boolean; data?: T; error?: { message: string } },
   options?: {
     successTitle?: string;
     successDescription?: string;
-    onSuccess?: (data: T) => void;
+    onSuccess?: (data: T | undefined) => void;
     onError?: (error: { message: string }) => void;
   }
 ) {
-  if (result.success && result.data) {
+  if (result.success) {
     showSuccessToast(
       options?.successTitle || "Success",
       options?.successDescription
