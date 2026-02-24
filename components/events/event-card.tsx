@@ -47,68 +47,130 @@ export function EventCard({ event, viewMode }: EventCardProps) {
   const eventDate = new Date(event.date_time);
   const venueNames = event.venues.map((v) => v.name).join(", ") || "No venues";
 
+  const isList = viewMode === "list";
+
   return (
     <Card
       className={cn(
-        "transition-all hover:shadow-md",
-        viewMode === "list" && "flex flex-row",
+        "rounded-lg border transition-all hover:shadow-md relative p-6",
+        isList && "flex flex-row",
         isDeleting && "opacity-50"
       )}
     >
-      <CardHeader className={cn(viewMode === "list" && "flex-1")}>
-        <div className="flex items-start justify-between">
-          <div className="flex-1">
-            <h3 className="text-xl font-semibold line-clamp-2">{event.name}</h3>
-            <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-              <Tag className="h-4 w-4" />
-              <span>{event.sport_type}</span>
+      {/* Dropdown menu - always at top right corner */}
+      <div className="absolute top-0 right-0 z-10">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <MoreVertical className="h-4 w-4" />
+              <span className="sr-only">More options</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem asChild>
+              <Link href={`/events/${event.id}/edit`}>Edit</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={handleDelete}
+              className="text-destructive"
+            >
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      {isList ? (
+        <>
+          {/* List view: 3 columns on desktop (header, content, footer), 2 columns on mobile (header+content, footer) */}
+          <div className="flex flex-1 flex-row gap-4">
+            {/* Left area: header + content */}
+            <div className="flex flex-1 flex-col sm:flex-row gap-2">
+              <CardHeader className="sm:flex-1">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1 pr-10">
+                    <h3 className="text-xl font-semibold line-clamp-2">
+                      {event.name}
+                    </h3>
+                    {/* In list view, hide sport type on mobile, show on desktop */}
+                    <div className="hidden sm:flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                      <Tag className="h-4 w-4" />
+                      <span>{event.sport_type}</span>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className=" sm:flex-1">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                    <span>{format(eventDate, "PPP 'at' p")}</span>
+                  </div>
+                  <div className="hidden sm:flex items-start gap-2 text-sm">
+                    <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+                    <span className="line-clamp-2">{venueNames}</span>
+                  </div>
+                  {event.description && (
+                    <p className="hidden sm:block text-sm text-muted-foreground line-clamp-2">
+                      {event.description}
+                    </p>
+                  )}
+                </div>
+              </CardContent>
             </div>
+
+            {/* Right area: footer / button */}
+            <CardFooter className="flex flex-col justify-center">
+              <Link href={`/events/${event.id}`} className="w-full">
+                <Button variant="outline" className="w-full">
+                  View Details
+                </Button>
+              </Link>
+            </CardFooter>
+            
           </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <MoreVertical className="h-4 w-4" />
-                <span className="sr-only">More options</span>
+        </>
+      ) : (
+        <>
+          {/* Grid view: original stacked layout */}
+          <CardHeader>
+            <div className="flex items-start justify-between pb-4">
+              <div className="flex-1 pr-10">
+                <h3 className="text-xl font-semibold line-clamp-2">
+                  {event.name}
+                </h3>
+                <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                  <Tag className="h-4 w-4" />
+                  <span>{event.sport_type}</span>
+                </div>
+              </div>
+            </div>
+          </CardHeader>
+            <CardContent>
+              <div className="space-y-3 pb-4">
+                <div className="flex items-center gap-2 text-sm">
+                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  <span>{format(eventDate, "PPP 'at' p")}</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm">
+                  <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+                  <span className="line-clamp-2">{venueNames}</span>
+                </div>
+                {event.description && (
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {event.description}
+                  </p>
+                )}
+              </div>
+            </CardContent>
+          <CardFooter>
+            <Link href={`/events/${event.id}`} className="w-full">
+              <Button variant="outline" className="w-full">
+                View Details
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem asChild>
-                <Link href={`/events/${event.id}/edit`}>Edit</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={handleDelete}
-                className="text-destructive"
-              >
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </CardHeader>
-      <CardContent className={cn(viewMode === "list" && "flex-1")}>
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 text-sm">
-            <Calendar className="h-4 w-4 text-muted-foreground" />
-            <span>{format(eventDate, "PPP 'at' p")}</span>
-          </div>
-          <div className="flex items-start gap-2 text-sm">
-            <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
-            <span className="line-clamp-2">{venueNames}</span>
-          </div>
-          {event.description && (
-            <p className="text-sm text-muted-foreground line-clamp-2">
-              {event.description}
-            </p>
-          )}
-        </div>
-      </CardContent>
-      <CardFooter className={cn(viewMode === "list" && "flex-col items-start")}>
-        <Link href={`/events/${event.id}`} className="w-full">
-          <Button variant="outline" className="w-full">
-            View Details
-          </Button>
-        </Link>
-      </CardFooter>
+            </Link>
+          </CardFooter>
+        </>
+      )}
     </Card>
   );
 }
