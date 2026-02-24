@@ -130,14 +130,11 @@ Tables:
 
 ---
 
-### Phase 4: Integration & Polish
+### Phase 4: Polish
 
-#### 11. Connect Everything
-- Wire up server actions to forms
-- Implement search/filter with database queries
-- Add loading states
-- Add error handling
-- Add toast notifications
+#### 11. App Shell & Event Details
+- Protected layout with header and logout
+- Event details page for a single event
 
 #### 12. Testing & Refinement
 - Test all CRUD operations
