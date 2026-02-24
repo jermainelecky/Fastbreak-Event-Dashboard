@@ -16,7 +16,6 @@ import {
   DatabaseError,
 } from "@/lib/types/errors";
 import type {
-  Event,
   EventWithVenues,
   EventFormData,
   EventFilters,
