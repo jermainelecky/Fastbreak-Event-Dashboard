@@ -139,7 +139,6 @@ Tables:
 #### 12. Testing & Refinement
 - Test all CRUD operations
 - Test authentication flows
-- Test responsive design
 - Polish UI/UX
 
 ---
