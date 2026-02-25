@@ -60,27 +60,42 @@ Tables:
 ### Phase 3: UI Components & Pages
 
 #### 7. Core UI Components (Shadcn)
-- Form components (with react-hook-form integration)
-- Toast/notification system
-- Loading states
-- Search/filter components
+- Created Form components (with react-hook-form integration)
+- Created a Toast/notification system that calls `showSuccessToast()` or `handleServerActionResult()` utilities that calls the `toast()` hook, which updates toast state. `Toaster` reads the state and renders each toast using components from `components/ui/toast.tsx`
+- Built Loading states
+  - Form submit is tracked with `isLoading(useState)`
+  - Dashbard refetch is tracked with `isPending(usetransition)`
+  - Event delete is tracked with `isDeleting(useState)`
+  - `LoadingSpinner` for forms, and `Skeleton` for the event-list are the shared building blocks
+- Implemented Search/filter components
+  - Search bar can search by name
+  - Filer by sport
+  - Sort by date, name, or venue
+  - Sort in ascending or descending order
 
 #### 8. Authentication Pages
-- Login page
-- Sign up page
-- Auth callback handler
+- Built login page that guards the route and redirects if already loggin in
+  - `signIn()` server action that was built in earlier phase does the actual sign-in with Supabase then redirects to `/dashboard`
+  - Google - OAuth redirects to Google callback and then to `/dashboard`
+  - the client handles loading state, toasts, and redirect after success
+- Built sign up page for first time users
+  - Signup page (server) - if user is already loggin in, it redirects to `/dashboard`. otherwise it renders form
+  - SignUpForm (client) - uses Zod `signUpSchema` and `react-hook-form`
+  - Email/password - form submits `signUp(email, password)` server action to Supabase signUp and redirects to `/dashboard`
+  - Google - Same OAuth flow as login. redirects to Google callback and then to `/dashboard`
+  - Client - shows toast and, on success, `router.push("/dashboard")`
 
-#### 9. Dashboard/Home Page
+#### 9. Dashboard
 - Event list display
 - Search functionality
 - Filter by sport type
-- Responsive grid/list toggle
+- Responsive grid/list toggles
 - Navigation to create/edit
 
 #### 10. Event Management Pages
-- Create event form
-- Edit event form
-- Delete confirmation
+- Create event form with `createEvent(eventData)` server action built from earlier phases
+- Edit event form with `updateEvent(event.id, eventData)` server action built from earlier phases
+- Delete confirmation with immediate removal from event list display
 
 ---
 
