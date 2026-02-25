@@ -35,8 +35,14 @@ export const SPORT_TYPES = [
 
 export type SportType = (typeof SPORT_TYPES)[number];
 
+// Sort options for events list
+export type EventSortBy = "name" | "date_time" | "venue";
+export type EventSortOrder = "asc" | "desc";
+
 // Search and filter types
 export interface EventFilters {
   search?: string;
   sport_type?: SportType;
+  sort_by?: EventSortBy;
+  sort_order?: EventSortOrder;
 }

@@ -6,7 +6,7 @@ import { EventFilters } from "@/components/events/event-filters";
 import { EventList } from "@/components/events/event-list";
 import { Button } from "@/components/ui/button";
 import { Plus, Grid3x3, List } from "lucide-react";
-import type { EventWithVenues, SportType } from "@/lib/types";
+import type { EventWithVenues, EventSortBy, EventSortOrder, SportType } from "@/lib/types";
 import Link from "next/link";
 
 interface DashboardContentProps {
@@ -14,6 +14,8 @@ interface DashboardContentProps {
   initialFilters: {
     search?: string;
     sport_type?: SportType;
+    sort_by?: EventSortBy;
+    sort_order?: EventSortOrder;
   };
   currentUserId: string;
 }
@@ -49,6 +51,15 @@ export function DashboardContent({
     } else {
       params.delete("sport_type");
     }
+    startTransition(() => {
+      router.push(`/dashboard?${params.toString()}`);
+    });
+  };
+
+  const handleSortChange = (sortBy: EventSortBy, sortOrder: EventSortOrder) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("sort_by", sortBy);
+    params.set("sort_order", sortOrder);
     startTransition(() => {
       router.push(`/dashboard?${params.toString()}`);
     });
@@ -96,8 +107,11 @@ export function DashboardContent({
       <EventFilters
         search={initialFilters.search}
         sportType={initialFilters.sport_type}
+        sortBy={initialFilters.sort_by}
+        sortOrder={initialFilters.sort_order}
         onSearchChange={handleSearchChange}
         onSportTypeChange={handleSportTypeChange}
+        onSortChange={handleSortChange}
       />
 
       {/* Events List */}

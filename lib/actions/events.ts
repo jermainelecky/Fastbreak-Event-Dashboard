@@ -31,7 +31,11 @@ export async function getEvents(
   return withErrorHandling(async () => {
     const supabase = await createClient();
 
-    // Build query with filters
+    const sortBy = filters?.sort_by ?? "date_time";
+    const sortOrder = filters?.sort_order ?? "asc";
+    const ascending = sortOrder === "asc";
+
+    // Build query with filters; for venue we sort in JS after transform
     let query = supabase
       .from("events")
       .select(
@@ -41,8 +45,14 @@ export async function getEvents(
           venue:venues (*)
         )
       `
-      )
-      .order("date_time", { ascending: true });
+      );
+
+    if (sortBy === "name" || sortBy === "date_time") {
+      query = query.order(sortBy, { ascending });
+    } else {
+      // Default order for venue sort (we sort in JS)
+      query = query.order("date_time", { ascending: true });
+    }
 
     // Apply search filter (search in event name)
     if (filters?.search) {
@@ -65,10 +75,20 @@ export async function getEvents(
     }
 
     // Transform the data to flatten the venue structure
-    const eventsWithVenues: EventWithVenues[] = data.map((event: any) => ({
+    let eventsWithVenues: EventWithVenues[] = data.map((event: any) => ({
       ...event,
       venues: event.event_venues?.map((ev: any) => ev.venue) || [],
     }));
+
+    // Sort by venue (first venue name) in JS
+    if (sortBy === "venue") {
+      eventsWithVenues = [...eventsWithVenues].sort((a, b) => {
+        const nameA = a.venues[0]?.name ?? "";
+        const nameB = b.venues[0]?.name ?? "";
+        const cmp = nameA.localeCompare(nameB);
+        return ascending ? cmp : -cmp;
+      });
+    }
 
     return eventsWithVenues;
   });

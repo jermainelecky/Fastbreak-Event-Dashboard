@@ -13,6 +13,8 @@ interface DashboardPageProps {
   searchParams: Promise<{
     search?: string;
     sport_type?: string;
+    sort_by?: string;
+    sort_order?: string;
   }>;
 }
 
@@ -25,6 +27,8 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
   const filters: EventFilters = {
     search: params.search,
     sport_type: params.sport_type as EventFilters["sport_type"],
+    sort_by: params.sort_by as EventFilters["sort_by"],
+    sort_order: params.sort_order as EventFilters["sort_order"],
   };
 
   // Fetch events with filters

@@ -17,6 +17,8 @@ export type {
   EventFormData,
   SportType,
   EventFilters,
+  EventSortBy,
+  EventSortOrder,
 } from "./api";
 
 export { SPORT_TYPES } from "./api";
