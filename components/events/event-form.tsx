@@ -112,7 +112,7 @@ export function EventForm({ event, venues }: EventFormProps) {
   }
 
   return (
-    <Card>
+    <Card className="rounded-lg p-4">
       <CardHeader>
         <CardTitle>{isEditing ? "Edit Event" : "Create Event"}</CardTitle>
         <CardDescription>

@@ -57,7 +57,7 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
         )}
       </div>
 
-      <Card>
+      <Card className="rounded-lg p-4">
         <CardHeader>
           <CardTitle className="text-2xl">{event.name}</CardTitle>
           <CardDescription className="flex items-center gap-2 mt-2 text-sm">

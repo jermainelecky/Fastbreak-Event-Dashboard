@@ -68,7 +68,7 @@ export function DashboardContent({
               variant={viewMode === "grid" ? "default" : "ghost"}
               size="sm"
               onClick={() => setViewMode("grid")}
-              className="rounded-r-none"
+              className={viewMode !== "grid" ? "rounded-r-none bg-white" : "rounded-r-none"}
             >
               <Grid3x3 className="h-4 w-4" />
             </Button>
@@ -76,7 +76,7 @@ export function DashboardContent({
               variant={viewMode === "list" ? "default" : "ghost"}
               size="sm"
               onClick={() => setViewMode("list")}
-              className="rounded-l-none"
+              className={viewMode !== "list" ? "rounded-l-none bg-white" : "rounded-l-none"}
             >
               <List className="h-4 w-4" />
             </Button>

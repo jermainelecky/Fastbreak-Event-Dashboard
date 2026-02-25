@@ -69,7 +69,7 @@ export function SignUpForm() {
   }
 
   return (
-    <Card>
+    <Card className="rounded-lg p-4">
       <CardHeader>
         <CardTitle>Create account</CardTitle>
         <CardDescription>
