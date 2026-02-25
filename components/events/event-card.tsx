@@ -21,9 +21,10 @@ import { useState } from "react";
 interface EventCardProps {
   event: EventWithVenues;
   viewMode: "grid" | "list";
+  currentUserId: string;
 }
 
-export function EventCard({ event, viewMode }: EventCardProps) {
+export function EventCard({ event, viewMode, currentUserId }: EventCardProps) {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -48,6 +49,7 @@ export function EventCard({ event, viewMode }: EventCardProps) {
   const venueNames = event.venues.map((v) => v.name).join(", ") || "No venues";
 
   const isList = viewMode === "list";
+  const canEdit = event.created_by === currentUserId;
 
   return (
     <Card
@@ -57,7 +59,8 @@ export function EventCard({ event, viewMode }: EventCardProps) {
         isDeleting && "opacity-50"
       )}
     >
-      {/* Dropdown menu - always at top right corner */}
+      {/* Dropdown menu - only for users who can edit or delete */}
+      {canEdit && (
       <div className="absolute top-0 right-0 z-10">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -79,6 +82,7 @@ export function EventCard({ event, viewMode }: EventCardProps) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+      )}
       {isList ? (
         <>
           {/* List view: 3 columns on desktop (header, content, footer), 2 columns on mobile (header+content, footer) */}

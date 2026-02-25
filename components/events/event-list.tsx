@@ -9,9 +9,10 @@ interface EventListProps {
   events: EventWithVenues[];
   viewMode: "grid" | "list";
   isLoading?: boolean;
+  currentUserId: string;
 }
 
-export function EventList({ events, viewMode, isLoading }: EventListProps) {
+export function EventList({ events, viewMode, isLoading, currentUserId }: EventListProps) {
   if (isLoading) {
     return <EventListSkeleton count={6} />;
   }
@@ -38,7 +39,7 @@ export function EventList({ events, viewMode, isLoading }: EventListProps) {
       )}
     >
       {events.map((event) => (
-        <EventCard key={event.id} event={event} viewMode={viewMode} />
+        <EventCard key={event.id} event={event} viewMode={viewMode} currentUserId={currentUserId} />
       ))}
     </div>
   );

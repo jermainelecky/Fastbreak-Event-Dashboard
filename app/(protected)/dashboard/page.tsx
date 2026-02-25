@@ -18,7 +18,7 @@ interface DashboardPageProps {
 
 export default async function DashboardPage({ searchParams }: DashboardPageProps) {
   // Require authentication
-  await requireAuthOrRedirect();
+  const user = await requireAuthOrRedirect();
 
   // Get search params
   const params = await searchParams;
@@ -35,6 +35,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
       <DashboardContent
         initialEvents={eventsResult.success ? eventsResult.data : []}
         initialFilters={filters}
+        currentUserId={user.id}
       />
     </div>
   );

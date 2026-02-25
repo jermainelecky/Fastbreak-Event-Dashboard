@@ -15,6 +15,7 @@ interface DashboardContentProps {
     search?: string;
     sport_type?: SportType;
   };
+  currentUserId: string;
 }
 
 type ViewMode = "grid" | "list";
@@ -22,6 +23,7 @@ type ViewMode = "grid" | "list";
 export function DashboardContent({
   initialEvents,
   initialFilters,
+  currentUserId,
 }: DashboardContentProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -99,7 +101,7 @@ export function DashboardContent({
       />
 
       {/* Events List */}
-      <EventList events={initialEvents} viewMode={viewMode} isLoading={isPending} />
+      <EventList events={initialEvents} viewMode={viewMode} isLoading={isPending} currentUserId={currentUserId} />
     </div>
   );
 }
