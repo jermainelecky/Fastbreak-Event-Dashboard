@@ -3,7 +3,7 @@
  * These types represent the application layer (not raw database)
  */
 
-import type { Event, Venue, EventVenue } from "./database";
+import type { Event, Venue } from "./database";
 
 // Event with related data (venues)
 export interface EventWithVenues extends Event {
@@ -39,18 +39,4 @@ export type SportType = (typeof SPORT_TYPES)[number];
 export interface EventFilters {
   search?: string;
   sport_type?: SportType;
-}
-
-// Pagination types (for future use)
-export interface PaginationParams {
-  page?: number;
-  limit?: number;
-}
-
-export interface PaginatedResponse<T> {
-  data: T[];
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
 }
