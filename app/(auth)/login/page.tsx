@@ -21,7 +21,7 @@ export default async function LoginPage() {
       <div className="text-center">
         <h1 className="sr-only">Sign in</h1>
         <h2 className="text-3xl font-bold">Welcome back</h2>
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-2 text-gray-500">
           Sign in to your account to continue
         </p>
       </div>

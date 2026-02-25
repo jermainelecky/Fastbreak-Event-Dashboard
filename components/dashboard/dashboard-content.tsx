@@ -58,7 +58,7 @@ export function DashboardContent({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-3xl font-bold">Events Dashboard</h1>
-          <p className="text-muted-foreground mt-1">
+          <p className="text-gray-500 mt-1">
             Manage and view all sports events
           </p>
         </div>

@@ -67,17 +67,17 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center gap-2 text-sm">
-            <Calendar className="h-4 w-4 text-muted-foreground" />
+            <Calendar className="h-4 w-4 text-gray-500" />
             <span>{format(eventDate, "PPP 'at' p")}</span>
           </div>
           <div className="flex items-start gap-2 text-sm">
-            <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+            <MapPin className="h-4 w-4 text-gray-500 mt-0.5" />
             <span>{venueNames}</span>
           </div>
           {event.description && (
             <div className="pt-2">
               <h2 className="text-sm font-semibold mb-1">Description</h2>
-              <p className="text-sm text-muted-foreground whitespace-pre-line">
+              <p className="text-sm text-gray-500 whitespace-pre-line">
                 {event.description}
               </p>
             </div>
@@ -85,7 +85,7 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
           {event.venues.length > 0 && (
             <div className="pt-2">
               <h2 className="text-sm font-semibold mb-1">Venues</h2>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-sm text-gray-500">
                 {event.venues.map((venue) => (
                   <li key={venue.id}>
                     <div className="font-medium">{venue.name}</div>

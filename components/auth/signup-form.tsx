@@ -148,11 +148,11 @@ export function SignUpForm() {
         </Form>
       </CardContent>
       <CardFooter className="flex flex-col space-y-4">
-        <div className="text-sm text-center text-muted-foreground">
+        <div className="text-sm text-center text-gray-500">
           Already have an account?{" "}
           <Link
             href="/login"
-            className="font-medium text-primary hover:underline"
+            className="font-medium text-slate-900 hover:underline"
           >
             Sign in
           </Link>

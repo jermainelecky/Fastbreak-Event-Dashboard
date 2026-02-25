@@ -212,7 +212,7 @@ export function EventForm({ event, venues }: EventFormProps) {
                   </div>
                   <div className="space-y-3 max-h-[200px] overflow-y-auto border rounded-md p-4">
                     {venues.length === 0 ? (
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-gray-500">
                         No venues available. Please create venues first.
                       </p>
                     ) : (
@@ -245,12 +245,12 @@ export function EventForm({ event, venues }: EventFormProps) {
                                   <div>
                                     <div className="font-medium">{venue.name}</div>
                                     {venue.address && (
-                                      <div className="text-sm text-muted-foreground">
+                                      <div className="text-sm text-gray-500">
                                         {venue.address}
                                       </div>
                                     )}
                                     {venue.capacity && (
-                                      <div className="text-sm text-muted-foreground">
+                                      <div className="text-sm text-gray-500">
                                         Capacity: {venue.capacity.toLocaleString()}
                                       </div>
                                     )}

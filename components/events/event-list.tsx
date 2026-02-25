@@ -19,10 +19,10 @@ export function EventList({ events, viewMode, isLoading }: EventListProps) {
   if (events.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center">
-        <p className="text-lg font-medium text-muted-foreground">
+        <p className="text-lg font-medium text-gray-500">
           No events found
         </p>
-        <p className="text-sm text-muted-foreground mt-2">
+        <p className="text-sm text-gray-500 mt-2">
           Try adjusting your search or filters, or create a new event.
         </p>
       </div>

@@ -10,7 +10,7 @@ interface ProtectedLayoutProps {
 export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="border-b bg-background">
+      <header className="border-b bg-white">
         <div className="container mx-auto flex items-center justify-between px-4 py-3">
           <Link href="/dashboard" className="font-semibold text-lg">
             Fastbreak Event Dashboard

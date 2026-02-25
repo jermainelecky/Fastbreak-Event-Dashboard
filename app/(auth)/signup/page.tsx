@@ -20,7 +20,7 @@ export default async function SignUpPage() {
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold">Create an account</h1>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-gray-500">
             Sign up to start managing your sports events
           </p>
         </div>

@@ -20,7 +20,7 @@ export function LoadingOverlay({
     <div className={cn("relative", className)}>
       {children}
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-50 rounded-md">
+        <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50 rounded-md">
           <LoadingSpinner size={spinnerSize} />
         </div>
       )}

@@ -72,7 +72,7 @@ export function EventCard({ event, viewMode }: EventCardProps) {
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={handleDelete}
-              className="text-destructive"
+              className="text-red-500"
             >
               Delete
             </DropdownMenuItem>
@@ -92,7 +92,7 @@ export function EventCard({ event, viewMode }: EventCardProps) {
                       {event.name}
                     </h3>
                     {/* In list view, hide sport type on mobile, show on desktop */}
-                    <div className="hidden sm:flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                    <div className="hidden sm:flex items-center gap-2 mt-2 text-sm text-gray-500">
                       <Tag className="h-4 w-4" />
                       <span>{event.sport_type}</span>
                     </div>
@@ -102,15 +102,15 @@ export function EventCard({ event, viewMode }: EventCardProps) {
               <CardContent className=" sm:flex-1">
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                    <Calendar className="h-4 w-4 text-gray-500" />
                     <span>{format(eventDate, "PPP 'at' p")}</span>
                   </div>
                   <div className="hidden sm:flex items-start gap-2 text-sm">
-                    <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+                    <MapPin className="h-4 w-4 text-gray-500 mt-0.5" />
                     <span className="line-clamp-2">{venueNames}</span>
                   </div>
                   {event.description && (
-                    <p className="hidden sm:block text-sm text-muted-foreground line-clamp-2">
+                    <p className="hidden sm:block text-sm text-gray-500 line-clamp-2">
                       {event.description}
                     </p>
                   )}
@@ -138,7 +138,7 @@ export function EventCard({ event, viewMode }: EventCardProps) {
                 <h3 className="text-xl font-semibold line-clamp-2">
                   {event.name}
                 </h3>
-                <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
                   <Tag className="h-4 w-4" />
                   <span>{event.sport_type}</span>
                 </div>
@@ -148,15 +148,15 @@ export function EventCard({ event, viewMode }: EventCardProps) {
             <CardContent>
               <div className="space-y-3 pb-4">
                 <div className="flex items-center gap-2 text-sm">
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  <Calendar className="h-4 w-4 text-gray-500" />
                   <span>{format(eventDate, "PPP 'at' p")}</span>
                 </div>
                 <div className="flex items-start gap-2 text-sm">
-                  <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+                  <MapPin className="h-4 w-4 text-gray-500 mt-0.5" />
                   <span className="line-clamp-2">{venueNames}</span>
                 </div>
                 {event.description && (
-                  <p className="text-sm text-muted-foreground line-clamp-2">
+                  <p className="text-sm text-gray-500 line-clamp-2">
                     {event.description}
                   </p>
                 )}

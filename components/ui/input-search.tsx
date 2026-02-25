@@ -54,7 +54,7 @@ const InputSearch = React.forwardRef<HTMLInputElement, InputSearchProps>(
 
     return (
       <div className={cn("relative", className)}>
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
         <Input
           ref={ref}
           type="search"
