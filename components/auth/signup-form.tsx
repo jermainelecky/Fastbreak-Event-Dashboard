@@ -8,8 +8,10 @@ import { signUp } from "@/lib/actions/auth";
 import { handleServerActionResult } from "@/lib/utils/toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { createClient } from "@/lib/utils/supabase/client";
 
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -39,7 +41,26 @@ type SignUpFormValues = z.infer<typeof signUpSchema>;
 
 export function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const router = useRouter();
+
+  async function handleGoogleSignIn() {
+    setIsGoogleLoading(true);
+    try {
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/api/auth/callback`,
+        },
+      });
+      if (error) {
+        handleServerActionResult({ success: false, error: { message: error.message } });
+      }
+    } finally {
+      setIsGoogleLoading(false);
+    }
+  }
 
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),
@@ -144,6 +165,25 @@ export function SignUpForm() {
             >
               Create account
             </LoadingButton>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-white px-2 text-gray-500">Or continue with</span>
+              </div>
+            </div>
+
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full"
+              onClick={handleGoogleSignIn}
+              disabled={isGoogleLoading}
+            >
+              {isGoogleLoading ? "Redirecting..." : "Sign up with Google"}
+            </Button>
           </form>
         </Form>
       </CardContent>

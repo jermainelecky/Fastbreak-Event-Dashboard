@@ -41,6 +41,38 @@ Replace `your_project_url_here` and `your_anon_key_here` with the values from st
 
 For detailed schema documentation, see [DATABASE_SCHEMA.md](./DATABASE_SCHEMA.md).
 
+## 5. Google OAuth (Optional)
+
+To enable "Sign in with Google" in addition to email/password:
+
+### 5a. Google Cloud Console
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a project or select an existing one
+3. Open **APIs & Services** → **Credentials** → **Create Credentials** → **OAuth client ID**
+4. If prompted, configure the **OAuth consent screen** (External, add your app name and support email)
+5. For **Application type** choose **Web application**
+6. Under **Authorized redirect URIs**, add:
+   - `https://<YOUR_SUPABASE_PROJECT_REF>.supabase.co/auth/v1/callback`
+   - Replace `<YOUR_SUPABASE_PROJECT_REF>` with your Supabase project reference (from Project Settings → General → Reference ID)
+7. Click **Create** and copy the **Client ID** and **Client Secret**
+
+### 5b. Supabase Dashboard
+
+1. In Supabase: **Authentication** → **Providers** → **Google**
+2. Enable the Google provider
+3. Paste the **Client ID** and **Client Secret** from Google Cloud
+4. Save
+
+### 5c. Redirect URLs in Supabase
+
+1. In Supabase: **Authentication** → **URL Configuration**
+2. Under **Redirect URLs**, add:
+   - `http://localhost:3000/api/auth/callback` (for local dev)
+   - `https://your-production-domain.com/api/auth/callback` (for production when you deploy)
+
+After this, the "Sign in with Google" and "Sign up with Google" buttons on the login and signup pages will redirect users to Google and back to your app.
+
 ## Notes
 
 - The `.env.local` file is already in `.gitignore` - never commit your API keys
