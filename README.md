@@ -2,7 +2,7 @@
 
 Sports Event Management Application - Interview Dev Challenge
 
-## To see the phased approach taken to set this up, view the [PHASED_IMPLEMENTATION.MD](./PHASED_IMPLEMENTAITON.md).
+To see the phased approach taken to set this up, view the [PHASED_IMPLEMENTATION.MD](./PHASED_IMPLEMENTAITON.md).
 
 ## Prerequisites
 
