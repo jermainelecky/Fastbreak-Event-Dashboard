@@ -5,16 +5,10 @@
 
 // Database types
 export type {
-  Database,
   Event,
-  EventInsert,
-  EventUpdate,
   Venue,
   VenueInsert,
-  VenueUpdate,
   EventVenue,
-  EventVenueInsert,
-  EventVenueUpdate,
 } from "./database";
 
 // API/Domain types
@@ -23,8 +17,6 @@ export type {
   EventFormData,
   SportType,
   EventFilters,
-  PaginationParams,
-  PaginatedResponse,
 } from "./api";
 
 export { SPORT_TYPES } from "./api";
