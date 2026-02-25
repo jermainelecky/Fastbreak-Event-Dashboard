@@ -90,3 +90,11 @@ This structure was chosen to match Next.js App Router, keep server vs client and
 - `npm run build` - Build for production
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
+
+## Notes
+
+- All database interactions are server-side
+- Prefering Server Actions over API Routes
+- Using Shadcn Form component with react-hook-form for all forms
+- Implemented consistent error handling and type safety
+- Included meaningful README.md + exdended docs with architecture decisions and trade-offs
