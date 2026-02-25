@@ -1,15 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { format } from "date-fns";
 import { createEvent, updateEvent } from "@/lib/actions/events";
-import { getVenues } from "@/lib/actions/venues";
 import { handleServerActionResult } from "@/lib/utils/toast";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -268,7 +265,7 @@ export function EventForm({ event, venues }: EventFormProps) {
               )}
             />
 
-            <div className="flex gap-4">
+            <CardFooter className="gap-4">
               <LoadingButton
                 type="submit"
                 className="flex-1"
@@ -284,7 +281,7 @@ export function EventForm({ event, venues }: EventFormProps) {
               >
                 Cancel
               </Button>
-            </div>
+            </CardFooter>
           </form>
         </Form>
       </CardContent>
