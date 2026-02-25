@@ -2,7 +2,7 @@
 
 Sports Event Management Application - Interview Dev Challenge
 
-To see the phased approach taken to set this up, view the [PHASED_IMPLEMENTATION.MD](./PHASED_IMPLEMENTAITON.md).
+To see the phased approach taken to set this up, view the [PHASED_IMPLEMENTATION.md](./PHASED_IMPLEMENTAITON.md).
 
 ## Prerequisites
 
@@ -74,6 +74,7 @@ This structure was chosen to match Next.js App Router, keep server vs client and
 - `lib/actions` vs `lib/utils` - server-only vs shared helpers
 - `components/` **by feature +** `ui/` - "where does this UI belong?" and "what's generic?"
 - `lib/types`, `hooks/`, `supabase/migrations/`, `__tests__/` - one clear place for types, app-wide hooks, DB definition, and tests, following common Next/React/Supabase conventions.
+- **No** `src/` **directory** - Next.js works the same with or without `src/`. Keeping `app/`, `lib/`, `components/` at the root keeps paths shorter and matches the default layout.
 
 ## Tech Stack
 

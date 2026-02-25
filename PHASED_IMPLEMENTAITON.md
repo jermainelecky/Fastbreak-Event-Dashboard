@@ -5,15 +5,17 @@
 ### Phase 1: Project Setup & Foundation
 
 #### 1. Initialize Next.js 15 with TypeScript
+- Using npm
 - Set up App Router structure
-- Configure TypeScript strict mode
+- Configured TypeScript strict mode for catching more bugs at compile time
 - Set up Tailwind CSS
-- Install and configure Shadcn UI
+- Set up ESLint to enforce consistent styling and to catch issues
+- Install and configure Shadcn UI with expected starting components (Button, Card, Form, Input) to create a shared design system from the beginning
 
 #### 2. Supabase Setup
-- Create Supabase project
+- Created Supabase project
 - Set up environment variables
-- Configure Supabase client (server-side only)
+- Configured Supabase clients (server-side + client-side auth)
 - Set up authentication providers (Email + Google OAuth)
 
 #### 3. Database Schema Design
@@ -24,30 +26,34 @@ Tables:
 - event_venues (event_id, venue_id) - junction table for many-to-many
 ```
 
-**Questions to decide:**
-- Should venues be user-specific or shared across all users?
-- Should users be able to edit/delete other users' events, or only their own?
+**Decisions made:**
+- Venues should be shared across all users.
+- Only users who are event owners Should be able to edit/delete events.
 
 ---
 
 ### Phase 2: Core Infrastructure
 
 #### 4. Type Safety & Error Handling
-- Create shared TypeScript types/interfaces
-- Build generic server action wrapper for consistent error handling
-- Define Result<T, E> pattern or similar for type-safe responses
+- Created shared TypeScript types/interfaces to keep app in sync.
+- Built generic server action wrapper for consistent error handling
+- Defined `Result<T, E>` pattern for type-safe responses
 
 #### 5. Authentication Infrastructure
-- Server action for login/signup
-- Server action for logout
-- Middleware for protected routes
-- Auth helper utilities
+- Created server actions for login/signup
+- Created server actions for logout
+- Created middleware for protected routes to refresh the Supabase auth session on each request so cookies stay valid
+  - Enforced by calling `requireAuthOrRedirect()` in protected pages/layouts, which redirects to login when there's no user.
+- Added Auth helper utilities:
+  - `getCurrentUser()`
+  - `requireAuth()`
+  - `isAuthenticated()`
+  - `getAuthUserOrRedirect()`
 
 #### 6. Server Actions Structure
 - `lib/actions/events.ts` - CRUD operations
 - `lib/actions/venues.ts` - Venue operations
 - `lib/actions/auth.ts` - Authentication
-- Generic action wrapper for error handling
 
 ---
 
@@ -88,6 +94,9 @@ Tables:
 - Test all CRUD operations
 - Test authentication flows
 - Polish UI/UX
+
+**Decisions made**
+- Jest - i'm most familiar with Jest, but it also lets me test server actions and utils in isolation and can validate auth and event logic without spinning up the full app
 
 ---
 
