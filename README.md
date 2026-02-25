@@ -68,13 +68,20 @@ supabase/
 __tests__/              # Jest tests
 ```
 
+This structure was chosen to match Next.js App Router, keep server vs client and feature boundaries clear, and make the codebase easy to navigate and safe for server-only code.
+
+- **Route groups** - clear split between unauthenticated and authenticated areas and layouts
+- `lib/actions` vs `lib/utils` - server-only vs shared helpers
+- `components/` **by feature +** `ui/` - "where does this UI belong?" and "what's generic?"
+- `lib/types`, `hooks/`, `supabase/migrations/`, `__tests__/` - one clear place for types, app-wide hooks, DB definition, and tests, following common Next/React/Supabase conventions.
+
 ## Tech Stack
 
 - **Framework**: Next.js 15+ (App Router)
 - **Language**: TypeScript
 - **Database**: Supabase
 - **Styling**: Tailwind CSS
-- **UI Components**: Shadcn (to be installed)
+- **UI Components**: Shadcn
 
 ## Available Scripts
 
