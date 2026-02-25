@@ -59,7 +59,7 @@ export function LoginForm() {
   }
 
   return (
-    <Card>
+    <Card className="rounded-lg p-4">
       <CardHeader>
         <CardTitle>Sign in</CardTitle>
         <CardDescription>
