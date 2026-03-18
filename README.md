@@ -4,6 +4,8 @@ Sports Event Management Application - Interview Dev Challenge
 
 To see the phased approach taken to set this up, view the [PHASED_IMPLEMENTATION.md](./PHASED_IMPLEMENTAITON.md).
 
+this has been deployed to Vercel and you can preview it [here](https://fastbreak-event-dashboard-sigma.vercel.app/).
+
 ## Prerequisites
 
 - Node.js 18+ installed
